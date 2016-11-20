@@ -13,6 +13,8 @@ import java.util.List;
  */
 @Component
 @Path("/student")
+@Consumes("application/json")
+@Produces("application/json")
 public class StudentEndpoint {
 
     @Autowired
@@ -20,7 +22,6 @@ public class StudentEndpoint {
 
     @GET
     @Path("/all.json")
-    @Produces("application/json")
     public List<Student>findAllStudents(){
         List<Student> studentList = studentMapper.findAllStudents();
         return studentList;
@@ -28,7 +29,6 @@ public class StudentEndpoint {
 
     @GET
     @Path("/{id}.json")
-    @Produces("application/json")
     public Student findById(@PathParam("id") int id){
         Student student = studentMapper.findById(id);
         return student;
@@ -37,8 +37,6 @@ public class StudentEndpoint {
 
     @POST
     @Path("/insert.json")
-    @Consumes("application/json")
-    @Produces("application/json")
     public Student insert(Student student){
         studentMapper.insert(student);
         return student;
@@ -46,8 +44,6 @@ public class StudentEndpoint {
 
     @POST
     @Path("/update.json")
-    @Consumes("application/json")
-    @Produces("application/json")
     public Student update(Student student){
         studentMapper.update(student);
         return student;
