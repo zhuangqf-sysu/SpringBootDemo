@@ -364,7 +364,9 @@ StudentServiceTest:
     public class JerseyConfig extends ResourceConfig {
 
         public JerseyConfig(){
-            register(StudentEndpoint.class);
+            //register(StudentEndpoint.class);
+            //注册包下的所有endpoint
+            packages("com.example.zhuangqf.endpoint");
         }
 
     }

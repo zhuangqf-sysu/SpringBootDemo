@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 public class JerseyConfig extends ResourceConfig {
 
     public JerseyConfig(){
-        register(StudentEndpoint.class);
+        packages("com.example.zhuangqf.endpoint");
     }
 
 }
