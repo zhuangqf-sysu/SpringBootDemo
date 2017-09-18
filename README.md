@@ -1,13 +1,13 @@
-#SpringBootDemo
+# SpringBootDemo
 搭建一个基于Spring Boot的Rest Web开发框架，同时
  - 1、改用undertow服务器；
  - 2、配置jdbc pool；
  - 3、利用Mybatis编写增删查改;
  - 4、利用jax-rs编写endpoint;
 
-##0、搭建Spring Boot
-###（1）、create project from maven archetype：maven-archetype-quickstart
-###（2）、添加spring boot依赖：
+## 0、搭建Spring Boot
+### （1）、create project from maven archetype：maven-archetype-quickstart
+### （2）、添加spring boot依赖：
 
     <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
       xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
@@ -49,7 +49,7 @@
         </build>
     </project>
 
-###(3) 在java目录下新建包，并编写一个Controller：HelloWorldController
+### (3) 在java目录下新建包，并编写一个Controller：HelloWorldController
 
     package com.example.zhuangqf.controller;
 
@@ -75,7 +75,7 @@
 @RequestMapping 注解提供路由信息,它告诉Spring任何来自"/"路径的HTTP请求都应该被映射到 home 方法。 @RestController 注解告诉Spring以字符串的形式渲染结果,并直接返回给调用者。
 第二个类级别的注解是 @EnableAutoConfiguration ,这个注解告诉Spring Boot根据添加的jar依赖猜测你想如何配置Spring。由于 spring-boot-starter-web 添加了Tomcat和Spring MVC,所以auto-configuration将假定你正在开发一个web应用,并对Spring进行相应地设置。
 
-###（4） 写一个App类用以启动spring boot server
+### （4） 写一个App类用以启动spring boot server
 
     package com.example.zhuangqf;
 
@@ -92,7 +92,7 @@
 
 我们的main方法通过调用 run ,将业务委托给了Spring Boot的SpringApplication类。SpringApplication将引导我们的应用,启动Spring,相应地启动被自动配置的Tomcat web服务器。运行main方法后访问localhost:8080,就可以看到网页上出现hello world(如果配置没出错的话)
 
-##1、改用undertow服务器
+## 1、改用undertow服务器
      Tomcat是spring boot的默认服务器，使用Undertow替代Tomcat，你需要排除Tomcat依赖,并包含Undertow starter。maven:
 
     <dependency>
@@ -118,8 +118,8 @@
     2016-11-18 19:20:41.792 INFO 12201 --- [ main] b.c.e.u.UndertowEmbeddedServletContainer : Undertow started on port(s) 8080 (http)
     2016-11-18 19:20:41.803 INFO 12201 --- [ main] com.example.zhuangqf.App : Started App in 4.829 seconds (JVM running for 5.478)
 
-##2、配置jdbc pool
-###（1）pom：
+## 2、配置jdbc pool
+### （1）pom：
     <!-- MYSQL -->
     <dependency>
         <groupId>mysql</groupId>
@@ -131,7 +131,7 @@
         <artifactId>spring-boot-starter-jdbc</artifactId>
     </dependency>
 
-###（2）src下新建resources目录（如果没有的话），添加application.properties:
+### （2）src下新建resources目录（如果没有的话），添加application.properties:
 
     spring.datasource.url=jdbc:mysql://localhost:3306/test
     spring.datasource.username=root
@@ -149,7 +149,7 @@
     spring.datasource.time-between-eviction-runs-millis=18800
     spring.datasource.jdbc-interceptors=ConnectionState;SlowQueryReport(threshold=0)
 
-###(3)编写Entity：Student：
+### (3)编写Entity：Student：
 
     package com.example.zhuangqf.entity;
 
@@ -189,7 +189,7 @@
         }
     }
 
-###（4）编写service：StudentService（暂用JdbcTample做持久层开发）：
+### （4）编写service：StudentService（暂用JdbcTample做持久层开发）：
 
     package com.example.zhuangqf.service;
 
@@ -230,7 +230,7 @@
         }
     }
 
-###（5）单元测试，pom：
+### （5）单元测试，pom：
 
     <dependency>
         <groupId>org.springframework.boot</groupId>
@@ -275,8 +275,8 @@ StudentServiceTest:
 
     2 zhuangqf 18
 
-##3、利用Mybatis编写增删查改;
-###(1) pom:
+## 3、利用Mybatis编写增删查改;
+### (1) pom:
 
     <dependency>
         <groupId>org.mybatis.spring.boot</groupId>
@@ -284,8 +284,8 @@ StudentServiceTest:
         <version>1.1.1</version>
     </dependency>
 
-###(2)编写Entity：Student(已实现)
-###(3)编写Mapper：StudentMapper(这里采用注解配置，对多数据库的支持不好)
+### (2)编写Entity：Student(已实现)
+### (3)编写Mapper：StudentMapper(这里采用注解配置，对多数据库的支持不好)
 
     package com.example.zhuangqf.mapper;
 
@@ -318,7 +318,7 @@ StudentServiceTest:
 
     }
 
-###(4)App启动类 run
+### (4)App启动类 run
 
     package com.example.zhuangqf;
 
@@ -341,15 +341,15 @@ StudentServiceTest:
 
     }
 
-##4、利用jax-rs编写endpoint
-###(1)pom:
+## 4、利用jax-rs编写endpoint
+### (1)pom:
 
     <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-jersey</artifactId>
     </dependency>
 
-###(2)继承ResourceConfig 注册endpoint
+### (2)继承ResourceConfig 注册endpoint
 
     package com.example.zhuangqf.config;
 
@@ -371,7 +371,7 @@ StudentServiceTest:
 
     }
 
-###(3) 编写Endpoint：StudentEndpoint
+### (3) 编写Endpoint：StudentEndpoint
 
     package com.example.zhuangqf.endpoint;
 
@@ -437,7 +437,7 @@ StudentServiceTest:
 
     }
 
-###(4)修改App启动类
+### (4)修改App启动类
 
       package com.example.zhuangqf;
 
@@ -458,9 +458,9 @@ StudentServiceTest:
 
       }
 
-###(5) postman测试，不贴图了
+### (5) postman测试，不贴图了
 
-##参考：
+## 参考：
  - 数据库配置 http://blog.csdn.net/catoop/article/details/50507516
  - Spring Boot官方范例 https://github.com/spring-projects/spring-boot/tree/master/spring-boot-samples
  - mybatis范例 https://github.com/mybatis/spring-boot-starter
