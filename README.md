@@ -50,8 +50,8 @@
     </project>
 
 ### (3) 在java目录下新建包，并编写一个Controller：HelloWorldController
-
-    package com.example.zhuangqf.controller;
+```java
+    package com.example.zhuangqf.controller;
 
     import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
     import org.springframework.web.bind.annotation.RequestMapping;
@@ -70,7 +70,7 @@
         }
 
     }
-
+```
 类上使用的第一个注解是 @RestController ,这被称为构造型(stereotype)注解。它为阅读代码的人提供暗示(这是一个支持REST的控制器),对于Spring,该类扮演了一个特殊角色。在本示例中,我们的类是一个web @Controller ,所以当web请求进来时,Spring会考虑是否使用它来处理。
 @RequestMapping 注解提供路由信息,它告诉Spring任何来自"/"路径的HTTP请求都应该被映射到 home 方法。 @RestController 注解告诉Spring以字符串的形式渲染结果,并直接返回给调用者。
 第二个类级别的注解是 @EnableAutoConfiguration ,这个注解告诉Spring Boot根据添加的jar依赖猜测你想如何配置Spring。由于 spring-boot-starter-web 添加了Tomcat和Spring MVC,所以auto-configuration将假定你正在开发一个web应用,并对Spring进行相应地设置。
