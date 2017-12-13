@@ -93,7 +93,7 @@
 我们的main方法通过调用 run ,将业务委托给了Spring Boot的SpringApplication类。SpringApplication将引导我们的应用,启动Spring,相应地启动被自动配置的Tomcat web服务器。运行main方法后访问localhost:8080,就可以看到网页上出现hello world(如果配置没出错的话)
 
 ## 1、改用undertow服务器
-     Tomcat是spring boot的默认服务器，使用Undertow替代Tomcat，你需要排除Tomcat依赖,并包含Undertow starter。maven:
+Tomcat是spring boot的默认服务器，使用Undertow替代Tomcat，你需要排除Tomcat依赖,并包含Undertow starter。maven:
 
     <dependency>
         <groupId>org.springframework.boot</groupId>
